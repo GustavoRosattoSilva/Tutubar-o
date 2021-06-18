@@ -13,8 +13,10 @@
 
 // setando as variaveis / set the initial variables
 const int altura = 23, largura = 80;
-int posicao_tubarao_x = 1, posicao_tubarao_y = 1, x, y;
 
+int posicao_tubarao_x = 1, posicao_tubarao_y = 1, posicao_peixe_x, posicao_peixe_y, x, y;
+
+//declaração de funções / funtion declaration
 void cria_mapa(char mapa_oceano[altura][largura]){
 
     int count, i;
@@ -51,7 +53,11 @@ void cria_mapa(char mapa_oceano[altura][largura]){
     mapa_oceano[posicao_tubarao_y][posicao_tubarao_x] = '@';
 
     //seta a posição inicial do peixe / set the initial fish position
-    mapa_oceano[(rand()%(altura-3)) + 1][(rand()%(largura-3)) + 1] = 'P';
+    posicao_peixe_x = (rand()%(largura-3)) + 1;
+    
+    posicao_peixe_y = (rand()%(altura-3)) + 1;
+    
+    mapa_oceano[posicao_peixe_y][posicao_peixe_x] = 'P';
 
 }
 
@@ -74,7 +80,7 @@ void imprime_mapa(char mapa_oceano[altura][largura]){
 
 }
 
-char redefine_mapa(char mapa_oceano[altura][largura], char auxiliar){
+char redefine_mapa_tubarao(char mapa_oceano[altura][largura], char auxiliar){
         if ((auxiliar == 'A' || auxiliar == 'a') && posicao_tubarao_x - 1 >= 1 && mapa_oceano[posicao_tubarao_y][posicao_tubarao_x -1] != 'A'){
             
             mapa_oceano[posicao_tubarao_y][posicao_tubarao_x] = ' ';
@@ -133,6 +139,78 @@ char redefine_mapa(char mapa_oceano[altura][largura], char auxiliar){
 
         return auxiliar;
 
+}
+
+char redefine_mapa_peixe(char mapa_oceano[altura][largura], char auxiliar){
+        if ((auxiliar == 'A' || auxiliar == 'a') && posicao_peixe_x - 1 >= 1 && mapa_oceano[posicao_peixe_y][posicao_peixe_x -1] != 'A'){
+            
+            mapa_oceano[posicao_peixe_y][posicao_peixe_x] = ' ';
+            
+            posicao_peixe_x--;
+            
+            if (mapa_oceano[posicao_tubarao_y][posicao_peixe_x] == '@'){
+                
+                auxiliar = 'k';
+        
+            }
+
+            mapa_oceano[posicao_peixe_y][posicao_peixe_x] = 'P';
+        
+        }
+    
+        if ((auxiliar == 'W' || auxiliar == 'w') && posicao_peixe_y - 1 >= 1 && mapa_oceano[posicao_peixe_y - 1][posicao_peixe_x] != 'A'){
+            
+            mapa_oceano[posicao_peixe_y][posicao_peixe_x] = ' ';
+            
+            posicao_peixe_y--;
+            
+            if (mapa_oceano[posicao_peixe_y][posicao_peixe_x] == '@'){
+                
+                auxiliar = 'k';
+        
+            }
+
+            mapa_oceano[posicao_peixe_y][posicao_peixe_x] = 'P';
+        
+        }
+
+        if ((auxiliar == 'S' || auxiliar == 's') && posicao_peixe_y + 1 <= (altura -2) && mapa_oceano[posicao_peixe_y + 1][posicao_peixe_x] != 'A'){
+            
+            mapa_oceano[posicao_peixe_y][posicao_peixe_x] = ' ';
+            
+            posicao_peixe_y++;
+            
+            if (mapa_oceano[posicao_peixe_y][posicao_peixe_x] == '@'){
+            
+                auxiliar = 'k';
+            
+            }
+
+            mapa_oceano[posicao_peixe_y][posicao_peixe_x] = 'P';
+        
+        }
+    
+        if ((auxiliar == 'D' || auxiliar == 'd') && posicao_peixe_x + 1 <= (largura - 2) && mapa_oceano[posicao_peixe_y][posicao_peixe_x + 1] != 'A'){
+            
+            mapa_oceano[posicao_peixe_y][posicao_peixe_x] = ' ';
+            
+            posicao_peixe_x++;
+            
+            if (mapa_oceano[posicao_peixe_y][posicao_peixe_x] == '@'){
+                
+                auxiliar = 'k';
+            
+            }
+            
+            mapa_oceano[posicao_peixe_y][posicao_peixe_x] = 'P';
+        
+        }
+
+        system("clear");
+
+        imprime_mapa(mapa_oceano);
+
+        return auxiliar;
 
 }
 
@@ -156,7 +234,7 @@ int main(){
         }
 
         else{
-            auxiliar = redefine_mapa(mapa_oceano, auxiliar);
+            auxiliar = redefine_mapa_tubarao(mapa_oceano, auxiliar);
         }
         
         if (auxiliar == 'k'){
