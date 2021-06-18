@@ -141,7 +141,8 @@ char redefine_mapa_tubarao(char mapa_oceano[altura][largura], char auxiliar){
 
 }
 
-char redefine_mapa_peixe(char mapa_oceano[altura][largura], char auxiliar){
+void redefine_mapa_peixe(char mapa_oceano[altura][largura], char auxiliar){
+        
         if ((auxiliar == 'A' || auxiliar == 'a') && posicao_peixe_x - 1 >= 1 && mapa_oceano[posicao_peixe_y][posicao_peixe_x -1] != 'A'){
             
             mapa_oceano[posicao_peixe_y][posicao_peixe_x] = ' ';
@@ -210,14 +211,14 @@ char redefine_mapa_peixe(char mapa_oceano[altura][largura], char auxiliar){
 
         imprime_mapa(mapa_oceano);
 
-        return auxiliar;
-
 }
 
 int main(){
 
     // setando as variaveis / set the initial variables
-    char mapa_oceano[altura][largura], auxiliar;
+    char mapa_oceano[altura][largura], auxiliar, chave_de_movimento_peixe;
+
+    int aaa;
 
     // preencheendo o mapa / contruct the map
     cria_mapa(mapa_oceano);
@@ -229,17 +230,49 @@ int main(){
     
     while(1==1){
         scanf("%c", &auxiliar);
+        
         if (auxiliar == 'k'){
+        
             break;
+        
         }
 
         else{
+
+            aaa = rand()%4;
+
+            if (1==1){
+                
+                if (aaa == 0){
+                    chave_de_movimento_peixe = 's';
+                }
+
+                if (aaa == 1){
+                    chave_de_movimento_peixe = 'd';
+                }
+
+                if (aaa == 2){
+                    chave_de_movimento_peixe = 'a';
+                }
+
+                if (aaa == 3){
+                    chave_de_movimento_peixe = 'w';
+                }
+
+            }
+            
+            redefine_mapa_peixe(mapa_oceano, chave_de_movimento_peixe);
+            
             auxiliar = redefine_mapa_tubarao(mapa_oceano, auxiliar);
+        
         }
         
         if (auxiliar == 'k'){
+        
             printf("win\n");
+        
             break;
+        
         }
 
     }
