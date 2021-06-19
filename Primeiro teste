@@ -16,6 +16,8 @@ const int altura = 23, largura = 80;
 
 int posicao_tubarao_x = 1, posicao_tubarao_y = 1, posicao_peixe_x, posicao_peixe_y, x, y;
 
+char chave_de_movimento_peixe;
+
 //declaração de funções / funtion declaration
 void cria_mapa(char mapa_oceano[altura][largura]){
 
@@ -61,8 +63,39 @@ void cria_mapa(char mapa_oceano[altura][largura]){
 
 }
 
-char gerador_de_cordenada(){
-    return 'e';
+char gerador_de_cordenada(char chave_de_movimento_peixe){
+    
+    int numero_aleatorio;
+
+
+    numero_aleatorio = rand()%4;
+
+    if (numero_aleatorio == 0){
+
+        chave_de_movimento_peixe = 's';
+
+    }
+
+    if (numero_aleatorio == 1){
+
+        chave_de_movimento_peixe = 'd';
+
+    }
+
+    if (numero_aleatorio == 2){
+
+        chave_de_movimento_peixe = 'a';
+
+    }
+
+    if (numero_aleatorio == 3){
+
+         chave_de_movimento_peixe = 'w';
+                
+    }
+
+    return chave_de_movimento_peixe;
+
 }
 
 void imprime_mapa(char mapa_oceano[altura][largura]){
@@ -218,8 +251,6 @@ int main(){
     // setando as variaveis / set the initial variables
     char mapa_oceano[altura][largura], auxiliar, chave_de_movimento_peixe;
 
-    int aaa;
-
     // preencheendo o mapa / contruct the map
     cria_mapa(mapa_oceano);
 
@@ -239,32 +270,12 @@ int main(){
 
         else{
 
-            aaa = rand()%4;
+            chave_de_movimento_peixe = gerador_de_cordenada(chave_de_movimento_peixe);
 
-            if (1==1){
-                
-                if (aaa == 0){
-                    chave_de_movimento_peixe = 's';
-                }
-
-                if (aaa == 1){
-                    chave_de_movimento_peixe = 'd';
-                }
-
-                if (aaa == 2){
-                    chave_de_movimento_peixe = 'a';
-                }
-
-                if (aaa == 3){
-                    chave_de_movimento_peixe = 'w';
-                }
-
-            }
-            
             redefine_mapa_peixe(mapa_oceano, chave_de_movimento_peixe);
             
             auxiliar = redefine_mapa_tubarao(mapa_oceano, auxiliar);
-        
+
         }
         
         if (auxiliar == 'k'){
@@ -281,6 +292,10 @@ int main(){
 
 }
 
-//para amanhã
-// criar uma IA para movimentar o peixe
+         // próximos passos//
+
+// melhorar a IA de movimentar o peixe
+// impedir o peixe de sobrebor o tubarão
+// documentar melhor o código
+// impedir o peixe de chocar contrar os obstáculos e não se mexer
 // criar uma IA para movimentar o tubarão
