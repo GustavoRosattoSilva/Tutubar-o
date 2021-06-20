@@ -120,8 +120,10 @@ char redefine_mapa_tubarao(char mapa_oceano[altura][largura], char auxiliar){
             
             posicao_tubarao_x--;
             
-            if (mapa_oceano[posicao_tubarao_y][posicao_tubarao_x] == 'P'){
+            if (posicao_peixe_y == posicao_tubarao_y && posicao_peixe_x == posicao_tubarao_x){
+                
                 auxiliar = 'k';
+            
             }
 
             mapa_oceano[posicao_tubarao_y][posicao_tubarao_x] = '@';
@@ -133,8 +135,10 @@ char redefine_mapa_tubarao(char mapa_oceano[altura][largura], char auxiliar){
             
             posicao_tubarao_y--;
             
-            if (mapa_oceano[posicao_tubarao_y][posicao_tubarao_x] == 'P'){
+            if (posicao_peixe_y == posicao_tubarao_y && posicao_peixe_x == posicao_tubarao_x){
+                
                 auxiliar = 'k';
+            
             }
 
             mapa_oceano[posicao_tubarao_y][posicao_tubarao_x] = '@';
@@ -146,8 +150,10 @@ char redefine_mapa_tubarao(char mapa_oceano[altura][largura], char auxiliar){
             
             posicao_tubarao_y++;
             
-            if (mapa_oceano[posicao_tubarao_y][posicao_tubarao_x] == 'P'){
+            if (posicao_peixe_y == posicao_tubarao_y && posicao_peixe_x == posicao_tubarao_x){
+                
                 auxiliar = 'k';
+            
             }
 
             mapa_oceano[posicao_tubarao_y][posicao_tubarao_x] = '@';
@@ -159,8 +165,10 @@ char redefine_mapa_tubarao(char mapa_oceano[altura][largura], char auxiliar){
             
             posicao_tubarao_x++;
             
-            if (mapa_oceano[posicao_tubarao_y][posicao_tubarao_x] == 'P'){
+            if (posicao_peixe_y == posicao_tubarao_y && posicao_peixe_x == posicao_tubarao_x){
+                
                 auxiliar = 'k';
+            
             }
             
             mapa_oceano[posicao_tubarao_y][posicao_tubarao_x] = '@';
@@ -182,10 +190,10 @@ void redefine_mapa_peixe(char mapa_oceano[altura][largura], char auxiliar){
             
             posicao_peixe_x--;
             
-            if (mapa_oceano[posicao_tubarao_y][posicao_peixe_x] == '@'){
+            if (posicao_peixe_y == posicao_tubarao_y && posicao_peixe_x == posicao_tubarao_x){
                 
                 auxiliar = 'k';
-        
+            
             }
 
             mapa_oceano[posicao_peixe_y][posicao_peixe_x] = 'P';
@@ -198,10 +206,10 @@ void redefine_mapa_peixe(char mapa_oceano[altura][largura], char auxiliar){
             
             posicao_peixe_y--;
             
-            if (mapa_oceano[posicao_peixe_y][posicao_peixe_x] == '@'){
+            if (posicao_peixe_y == posicao_tubarao_y && posicao_peixe_x == posicao_tubarao_x){
                 
                 auxiliar = 'k';
-        
+            
             }
 
             mapa_oceano[posicao_peixe_y][posicao_peixe_x] = 'P';
@@ -214,8 +222,8 @@ void redefine_mapa_peixe(char mapa_oceano[altura][largura], char auxiliar){
             
             posicao_peixe_y++;
             
-            if (mapa_oceano[posicao_peixe_y][posicao_peixe_x] == '@'){
-            
+            if (posicao_peixe_y == posicao_tubarao_y && posicao_peixe_x == posicao_tubarao_x){
+                
                 auxiliar = 'k';
             
             }
@@ -230,7 +238,7 @@ void redefine_mapa_peixe(char mapa_oceano[altura][largura], char auxiliar){
             
             posicao_peixe_x++;
             
-            if (mapa_oceano[posicao_peixe_y][posicao_peixe_x] == '@'){
+            if (posicao_peixe_y == posicao_tubarao_y && posicao_peixe_x == posicao_tubarao_x){
                 
                 auxiliar = 'k';
             
@@ -295,7 +303,6 @@ int main(){
          // próximos passos//
 
 // melhorar a IA de movimentar o peixe
-// impedir o peixe de sobrebor o tubarão
 // documentar melhor o código
 // impedir o peixe de chocar contrar os obstáculos e não se mexer
 // criar uma IA para movimentar o tubarão
