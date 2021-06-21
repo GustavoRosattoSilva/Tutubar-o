@@ -182,75 +182,88 @@ char redefine_mapa_tubarao(char mapa_oceano[altura][largura], char auxiliar){
 
 }
 
-void redefine_mapa_peixe(char mapa_oceano[altura][largura], char auxiliar){
-        
-        if ((auxiliar == 'A' || auxiliar == 'a') && posicao_peixe_x - 1 >= 1 && mapa_oceano[posicao_peixe_y][posicao_peixe_x -1] != 'A'){
-            
-            mapa_oceano[posicao_peixe_y][posicao_peixe_x] = ' ';
-            
-            posicao_peixe_x--;
-            
-            if (posicao_peixe_y == posicao_tubarao_y && posicao_peixe_x == posicao_tubarao_x){
-                
-                auxiliar = 'k';
-            
-            }
+char redefine_mapa_peixe(char mapa_oceano[altura][largura], char auxiliar){
 
-            mapa_oceano[posicao_peixe_y][posicao_peixe_x] = 'P';
+        while(1 == 1){
+
+            chave_de_movimento_peixe = gerador_de_cordenada(chave_de_movimento_peixe);
         
-        }
+            if ((auxiliar == 'A' || auxiliar == 'a') && posicao_peixe_x - 1 >= 1 && mapa_oceano[posicao_peixe_y][posicao_peixe_x -1] != 'A'){
+            
+                mapa_oceano[posicao_peixe_y][posicao_peixe_x] = ' ';
+            
+                posicao_peixe_x--;
+            
+                if (posicao_peixe_y == posicao_tubarao_y && posicao_peixe_x == posicao_tubarao_x){
+                
+                    auxiliar = 'k';
+            
+                }
+
+                mapa_oceano[posicao_peixe_y][posicao_peixe_x] = 'P';
+
+                break;
+        
+            }
     
-        if ((auxiliar == 'W' || auxiliar == 'w') && posicao_peixe_y - 1 >= 1 && mapa_oceano[posicao_peixe_y - 1][posicao_peixe_x] != 'A'){
+            if ((auxiliar == 'W' || auxiliar == 'w') && posicao_peixe_y - 1 >= 1 && mapa_oceano[posicao_peixe_y - 1][posicao_peixe_x] != 'A'){
             
-            mapa_oceano[posicao_peixe_y][posicao_peixe_x] = ' ';
+                mapa_oceano[posicao_peixe_y][posicao_peixe_x] = ' ';
             
-            posicao_peixe_y--;
+                posicao_peixe_y--;
             
-            if (posicao_peixe_y == posicao_tubarao_y && posicao_peixe_x == posicao_tubarao_x){
+                if (posicao_peixe_y == posicao_tubarao_y && posicao_peixe_x == posicao_tubarao_x){
                 
-                auxiliar = 'k';
+                    auxiliar = 'k';
             
+                }
+
+                mapa_oceano[posicao_peixe_y][posicao_peixe_x] = 'P';
+
+                break;
+        
             }
 
-            mapa_oceano[posicao_peixe_y][posicao_peixe_x] = 'P';
-        
-        }
-
-        if ((auxiliar == 'S' || auxiliar == 's') && posicao_peixe_y + 1 <= (altura -2) && mapa_oceano[posicao_peixe_y + 1][posicao_peixe_x] != 'A'){
+            if ((auxiliar == 'S' || auxiliar == 's') && posicao_peixe_y + 1 <= (altura -2) && mapa_oceano[posicao_peixe_y + 1][posicao_peixe_x] != 'A'){
             
-            mapa_oceano[posicao_peixe_y][posicao_peixe_x] = ' ';
+                mapa_oceano[posicao_peixe_y][posicao_peixe_x] = ' ';
             
-            posicao_peixe_y++;
+                posicao_peixe_y++;
             
-            if (posicao_peixe_y == posicao_tubarao_y && posicao_peixe_x == posicao_tubarao_x){
+                if (posicao_peixe_y == posicao_tubarao_y && posicao_peixe_x == posicao_tubarao_x){
                 
-                auxiliar = 'k';
+                    auxiliar = 'k';
             
-            }
+                }
 
-            mapa_oceano[posicao_peixe_y][posicao_peixe_x] = 'P';
+                mapa_oceano[posicao_peixe_y][posicao_peixe_x] = 'P';
+
+                break;
         
-        }
+            }
     
-        if ((auxiliar == 'D' || auxiliar == 'd') && posicao_peixe_x + 1 <= (largura - 2) && mapa_oceano[posicao_peixe_y][posicao_peixe_x + 1] != 'A'){
+            if ((auxiliar == 'D' || auxiliar == 'd') && posicao_peixe_x + 1 <= (largura - 2) && mapa_oceano[posicao_peixe_y][posicao_peixe_x + 1] != 'A'){
             
-            mapa_oceano[posicao_peixe_y][posicao_peixe_x] = ' ';
+                mapa_oceano[posicao_peixe_y][posicao_peixe_x] = ' ';
             
-            posicao_peixe_x++;
+                posicao_peixe_x++;
             
-            if (posicao_peixe_y == posicao_tubarao_y && posicao_peixe_x == posicao_tubarao_x){
+                if (posicao_peixe_y == posicao_tubarao_y && posicao_peixe_x == posicao_tubarao_x){
                 
-                auxiliar = 'k';
+                    auxiliar = 'k';
             
-            }
+                }
             
-            mapa_oceano[posicao_peixe_y][posicao_peixe_x] = 'P';
+                mapa_oceano[posicao_peixe_y][posicao_peixe_x] = 'P';
+
+                break;
         
+            }
+
         }
 
-        system("clear");
 
-        imprime_mapa(mapa_oceano);
+        return auxiliar;
 
 }
 
@@ -278,11 +291,12 @@ int main(){
 
         else{
 
-            chave_de_movimento_peixe = gerador_de_cordenada(chave_de_movimento_peixe);
 
-            redefine_mapa_peixe(mapa_oceano, chave_de_movimento_peixe);
+            redefine_mapa_tubarao(mapa_oceano, auxiliar);
+
+            auxiliar = redefine_mapa_peixe(mapa_oceano, chave_de_movimento_peixe);
             
-            auxiliar = redefine_mapa_tubarao(mapa_oceano, auxiliar);
+            
 
         }
         
