@@ -2,7 +2,8 @@
 
 ## Versão em Português
 
-  testes preliminares para um projeto  futoro envolvendo eletrorrecepsção de tubarões e aplicação em arduino.
+  Testes preliminares para um projeto  futoro envolvendo eletrorrecepsção de tubarões e aplicação em arduino.
+  
   A linguagem escolhida para os primeiros testes foi C pois é uma liguagem bem próxima da linguagem oficial do Arduino o que facilitará no futuro implementar o códico em Arduino, mas sem ter que se preocupar com orientação a objetos por equanto.
 
 ### Teste 1
@@ -12,6 +13,7 @@
 ## English Version
   
   preliminary tests for a future project involving shark electroreception and arduino application.
+  
   The language chosen for the first tests was C as it is a language very close to the official Arduino language which will make it easier in the future to implement the Arduino code, but without having to worry about object orientation for a while.
 
 ### Test 1
