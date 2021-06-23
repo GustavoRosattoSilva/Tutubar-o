@@ -96,10 +96,27 @@ char gerador_de_cordenada(char chave_de_movimento_peixe){
 
 }
 
-void imprime_mapa(char mapa_oceano[altura][largura]){
+void imprme_mapa_2(char mapa_oceano[altura][largura]){
+    
     for (y = 0; y < altura; ++y){
 
        for (x = 0; x < largura; ++x){
+
+           printf("%c",mapa_oceano[y][x]);
+
+       }
+
+       printf("\n");
+
+    }
+
+}
+
+void imprime_mapa(char mapa_oceano[altura][largura]){
+    
+    for (y = posicao_tubarao_y - 3; y < posicao_tubarao_y + 3; ++y){
+
+       for (x = posicao_tubarao_x - 3; x < posicao_tubarao_x + 3; ++x){
 
            printf("%c",mapa_oceano[y][x]);
 
