@@ -113,10 +113,46 @@ void imprme_mapa_2(char mapa_oceano[altura][largura]){
 }
 
 void imprime_mapa(char mapa_oceano[altura][largura]){
-    
-    for (y = posicao_tubarao_y - 3; y < posicao_tubarao_y + 3; ++y){
 
-       for (x = posicao_tubarao_x - 3; x < posicao_tubarao_x + 3; ++x){
+    int x_1, y_1, y_2, x_2;
+
+    
+    y_1 = posicao_tubarao_y - 3;
+
+    x_1 = posicao_tubarao_x - 3;
+
+    y_2 = posicao_tubarao_y + 3;
+
+    x_2 = posicao_tubarao_x + 3;
+
+    if (x_1 < 0){
+      
+        x_1 = 0;
+    
+    }
+
+    if (y_1 < 0){
+      
+        y_1 = 0;
+    
+    }
+
+    if (y_2 > altura){
+      
+        y_2 = altura;
+    
+    }
+
+    if (x_2 > largura){
+      
+        x_2 = largura;
+    
+    }
+
+
+    for (y = y_1; y < y_2; ++y){
+
+       for (x = x_1; x < x_2; ++x){
 
            printf("%c",mapa_oceano[y][x]);
 
