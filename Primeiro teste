@@ -17,6 +17,15 @@ const int altura = 23, largura = 80;
 int posicao_tubarao_x = 1, posicao_tubarao_y = 1, posicao_peixe_x, posicao_peixe_y, x, y;
 
 //declaração de funções / funtion declaration
+//não está funcionando, preciso descobrir por quê
+void cria_campo_eletrico_peixe(char mapa_oceano[altura][largura]){
+
+    mapa_oceano[posicao_peixe_y - 1][posicao_tubarao_x] = 1;
+    mapa_oceano[posicao_peixe_y + 1][posicao_tubarao_x] = 1;
+    mapa_oceano[posicao_peixe_y][posicao_tubarao_x - 1] = 1;
+    mapa_oceano[posicao_peixe_y][posicao_tubarao_x + 1] = 1;
+}
+
 void cria_mapa(char mapa_oceano[altura][largura]){
 
     int count, i;
@@ -97,8 +106,10 @@ char gerador_de_cordenada(char chave_de_movimento_peixe){
 }
 
 //imprime o mapa completo
-void imprme_mapa_2(char mapa_oceano[altura][largura]){
+void imprime_mapa(char mapa_oceano[altura][largura]){
     
+    //cria_campo_eletrico_peixe(mapa_oceano);
+
     for (y = 0; y < altura; ++y){
 
        for (x = 0; x < largura; ++x){
@@ -114,7 +125,7 @@ void imprme_mapa_2(char mapa_oceano[altura][largura]){
 }
 
 //imprime só o campo de visão do tubarão
-void imprime_mapa(char mapa_oceano[altura][largura]){
+void imprime_mapa_2(char mapa_oceano[altura][largura]){
 
     int x_1, y_1, y_2, x_2;
 
