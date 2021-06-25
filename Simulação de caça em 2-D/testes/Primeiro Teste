@@ -17,44 +17,32 @@ const int altura = 23, largura = 80, contador = 4;
 int posicao_tubarao_x = 1, posicao_tubarao_y = 1, posicao_peixe_x, posicao_peixe_y, x, y;
 
 //declaração de funções / funtion declaration
-//função para converter int em string / funtion to coverter int in string 
-char str_1 (int numero){
+void cria_campo_eletrico_peixe(char mapa_oceano[altura][largura]){
 
-    if (numero == 4){
+    if (mapa_oceano[posicao_peixe_y - 1][posicao_peixe_x] != '@' && mapa_oceano[posicao_peixe_y - 1][posicao_peixe_x] != 'A' && posicao_peixe_y - 1 > 0){
 
-        return '4';
+       mapa_oceano[posicao_peixe_y - 1][posicao_peixe_x] = '1';
     
     }
 
-    if (numero == 3){
+    if (mapa_oceano[posicao_peixe_y + 1][posicao_peixe_x] != '@' && mapa_oceano[posicao_peixe_y - 1][posicao_peixe_x] != 'A' && posicao_peixe_y + 1 < altura){
 
-        return '3';
+       mapa_oceano[posicao_peixe_y + 1][posicao_peixe_x] = '1';
     
     }
 
-    if (numero == 2){
+    if (mapa_oceano[posicao_peixe_y][posicao_peixe_x - 1] != '@' && mapa_oceano[posicao_peixe_y][posicao_peixe_x - 1] != 'A' && posicao_peixe_x - 1 > 0){
 
-        return '2';
+       mapa_oceano[posicao_peixe_y][posicao_peixe_x - 1] = '1';
     
     }
 
-    if (numero == 1){
+    if (mapa_oceano[posicao_peixe_y][posicao_peixe_x + 1] != '@' && mapa_oceano[posicao_peixe_y][posicao_peixe_x + 1] != 'A' && posicao_peixe_x + 1 < largura){
 
-        return '1';
+       mapa_oceano[posicao_peixe_y][posicao_peixe_x + 1] = '1';
     
     }
 
-    return ' ';
-
-}
-
-//não está funcionando, preciso descobrir por quê
-void cria_campo_eletrico_peixe(char mapa_oceano[altura][largura], int contador){
-
-    mapa_oceano[posicao_peixe_y - 1][posicao_peixe_x] = str_1(contador);
-    mapa_oceano[posicao_peixe_y + 1][posicao_peixe_x] = str_1(contador);
-    mapa_oceano[posicao_peixe_y][posicao_peixe_x - 1] = str_1(contador);
-    mapa_oceano[posicao_peixe_y][posicao_peixe_x + 1] = str_1(contador);
 }
 
 void cria_mapa(char mapa_oceano[altura][largura]){
@@ -139,7 +127,7 @@ char gerador_de_cordenada(char chave_de_movimento_peixe){
 //imprime o mapa completo
 void imprime_mapa(char mapa_oceano[altura][largura]){
     
-    cria_campo_eletrico_peixe(mapa_oceano, contador);
+    cria_campo_eletrico_peixe(mapa_oceano);
 
     for (y = 0; y < altura; ++y){
 
