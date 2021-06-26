@@ -14,12 +14,77 @@
 // setando as variaveis / set the initial variables
 const int altura = 23, largura = 80, contador = 4;
 
-int posicao_tubarao_x = 1, posicao_tubarao_y = 1, posicao_peixe_x, posicao_peixe_y, x, y;
+int posicao_tubarao_x = 1, posicao_tubarao_y = 1, posicao_peixe_x, posicao_peixe_y, x, y, i, j, k, l;
 
 //declaração de funções / funtion declaration
-//preciso dar um jeito de automatizar isso inviavel fazer todo o campo na mão
-//preciso impedir de chocar contra a parede
-void cria_campo_eletrico_peixe(char mapa_oceano[altura][largura]){
+//função que transforma um inteiro em string / fution turn int in str
+char str_1(int numero){
+
+    if (numero == 1){
+        
+        return '1';
+    
+    }
+
+    if (numero == 2){
+        
+        return '2';
+    
+    }
+
+    if (numero == 3){
+        
+        return '3';
+    
+    }
+
+    if (numero == 4){
+        
+        return '4';
+    
+    }
+
+    if (numero == 5){
+        
+        return '5';
+    
+    }
+
+    if (numero == 6){
+        
+        return '6';
+    
+    }
+
+    if (numero == 7){
+        
+        return '7';
+    
+    }
+
+    if (numero == 8){
+        
+        return '8';
+    
+    }
+
+    if (numero == 9){
+        
+        return '9';
+    
+    }
+
+    if (numero == 10){
+        
+        return '0';
+    
+    }
+
+    return ' ';
+
+}
+
+void cria_campo_eletrico_peixe_losangulo(char mapa_oceano[altura][largura], int contador){
 
     //limpa o mapa dos campos anteriores
     for (y = 0; y < altura; ++y){
@@ -36,150 +101,77 @@ void cria_campo_eletrico_peixe(char mapa_oceano[altura][largura]){
 
     }
 
-    if (mapa_oceano[posicao_peixe_y - 1][posicao_peixe_x] != '@' && mapa_oceano[posicao_peixe_y - 1][posicao_peixe_x] != 'A' && posicao_peixe_y - 1 > 0){
+    for (i = 1; i <= contador; ++i){
+        
+        for (l = 0; l <= i; ++l){
+            
+            if (posicao_peixe_y + l > 0 && posicao_peixe_y + l < altura && posicao_peixe_x + i - l > 0 && posicao_peixe_x + i - l < largura && mapa_oceano[posicao_peixe_y + l][posicao_peixe_x + i - l] == ' '){
+                
+                mapa_oceano[posicao_peixe_y + l][posicao_peixe_x + i - l] = str_1(i);
 
-       mapa_oceano[posicao_peixe_y - 1][posicao_peixe_x] = '1';
+            }
+
+            if (posicao_peixe_y - l > 0 && posicao_peixe_y - l < altura && posicao_peixe_x - i + l > 0 && posicao_peixe_x - i + l < largura && mapa_oceano[posicao_peixe_y - l][posicao_peixe_x - i + l] == ' '){
+                
+                mapa_oceano[posicao_peixe_y - l][posicao_peixe_x - i + l] = str_1(i);
+                
+            }
+
+            if (posicao_peixe_y + l > 0 && posicao_peixe_y + l < altura && posicao_peixe_x - i + l > 0 && posicao_peixe_x - i + l < largura && mapa_oceano[posicao_peixe_y + l][posicao_peixe_x - i + l] == ' '){
+                
+                mapa_oceano[posicao_peixe_y + l][posicao_peixe_x - i + l] = str_1(i);
+
+            }
+
+            if (posicao_peixe_y - l > 0 && posicao_peixe_y - l < altura && posicao_peixe_x + i - l > 0 && posicao_peixe_x + i - l < largura && mapa_oceano[posicao_peixe_y - l][posicao_peixe_x + i - l] == ' '){
+
+                
+                mapa_oceano[posicao_peixe_y - l][posicao_peixe_x + i - l] = str_1(i);
+                
+            }
+
+        }
+
+    }
     
+}
+
+void cria_campo_eletrico_peixe_quadrado(char mapa_oceano[altura][largura], int contador){
+
+    //limpa o mapa dos campos anteriores
+    for (y = 0; y < altura; ++y){
+
+       for (x = 0; x < largura; ++x){
+
+           if (mapa_oceano[y][x] != '@' && mapa_oceano[y][x] != 'A' && mapa_oceano[y][x] != 'P' && mapa_oceano[y][x] != 'H'){
+               
+               mapa_oceano[y][x] = ' ';
+
+           }
+
+       }
+
     }
 
-    if (mapa_oceano[posicao_peixe_y + 1][posicao_peixe_x] != '@' && mapa_oceano[posicao_peixe_y + 1][posicao_peixe_x] != 'A' && posicao_peixe_y + 1 < altura){
 
-       mapa_oceano[posicao_peixe_y + 1][posicao_peixe_x] = '1';
-    
+    for (i = 0; i <= contador; ++i){
+        
+        for (j = posicao_peixe_y - i; j <= posicao_peixe_y + i; ++j){
+            
+            for (k = posicao_peixe_x - i; k <= posicao_peixe_x + i; ++k){
+                
+                if (k > 0 && k < largura && j > 0 && j < altura && mapa_oceano[j][k] == ' '){
+                    
+                    mapa_oceano[j][k] = str_1(i);    
+                
+                }
+
+            }
+
+        }
+
     }
-
-    if (mapa_oceano[posicao_peixe_y][posicao_peixe_x - 1] != '@' && mapa_oceano[posicao_peixe_y][posicao_peixe_x - 1] != 'A' && posicao_peixe_x - 1 > 0){
-
-       mapa_oceano[posicao_peixe_y][posicao_peixe_x - 1] = '1';
     
-    }
-
-    if (mapa_oceano[posicao_peixe_y][posicao_peixe_x + 1] != '@' && mapa_oceano[posicao_peixe_y][posicao_peixe_x + 1] != 'A' && posicao_peixe_x + 1 < largura){
-
-       mapa_oceano[posicao_peixe_y][posicao_peixe_x + 1] = '1';
-    
-    }
-
-    if (mapa_oceano[posicao_peixe_y - 2][posicao_peixe_x] != '@' && mapa_oceano[posicao_peixe_y - 2][posicao_peixe_x] != 'A' && posicao_peixe_y - 2 > 0){
-
-       mapa_oceano[posicao_peixe_y - 2][posicao_peixe_x] = '2';
-    
-    }
-
-    if (mapa_oceano[posicao_peixe_y + 2][posicao_peixe_x] != '@' && mapa_oceano[posicao_peixe_y + 2][posicao_peixe_x] != 'A' && posicao_peixe_y + 2 < altura){
-
-       mapa_oceano[posicao_peixe_y + 2][posicao_peixe_x] = '2';
-    
-    }
-
-    if (mapa_oceano[posicao_peixe_y][posicao_peixe_x - 2] != '@' && mapa_oceano[posicao_peixe_y][posicao_peixe_x - 2] != 'A' && posicao_peixe_x - 2 > 0){
-
-       mapa_oceano[posicao_peixe_y][posicao_peixe_x - 2] = '2';
-    
-    }
-
-    if (mapa_oceano[posicao_peixe_y][posicao_peixe_x + 2] != '@' && mapa_oceano[posicao_peixe_y][posicao_peixe_x + 2] != 'A' && posicao_peixe_x + 2 < largura){
-
-       mapa_oceano[posicao_peixe_y][posicao_peixe_x + 2] = '2';
-    
-    }
-
-    if (mapa_oceano[posicao_peixe_y - 1][posicao_peixe_x - 1] != '@' && mapa_oceano[posicao_peixe_y - 1][posicao_peixe_x - 1] != 'A' && posicao_peixe_x - 1 > 0 && posicao_peixe_y - 1 > 0){
-
-       mapa_oceano[posicao_peixe_y - 1][posicao_peixe_x - 1] = '2';
-    
-    }
-
-    if (mapa_oceano[posicao_peixe_y + 1][posicao_peixe_x + 1] != '@' && mapa_oceano[posicao_peixe_y + 1][posicao_peixe_x + 1] != 'A' && posicao_peixe_x + 1 < largura && posicao_peixe_y + 1 < altura){
-
-       mapa_oceano[posicao_peixe_y + 1][posicao_peixe_x + 1] = '2';
-    
-    }
-
-    if (mapa_oceano[posicao_peixe_y + 1][posicao_peixe_x - 1] != '@' && mapa_oceano[posicao_peixe_y + 1][posicao_peixe_x - 1] != 'A' && posicao_peixe_y + 1 < altura && posicao_peixe_x - 1 > 0){
-
-       mapa_oceano[posicao_peixe_y + 1][posicao_peixe_x - 1] = '2';
-    
-    }
-
-    if (mapa_oceano[posicao_peixe_y - 1][posicao_peixe_x + 1] != '@' && mapa_oceano[posicao_peixe_y - 1][posicao_peixe_x + 1] != 'A' && posicao_peixe_y - 1 > 0 && posicao_peixe_x + 1 < largura){
-
-       mapa_oceano[posicao_peixe_y - 1][posicao_peixe_x + 1] = '2';
-    
-    }
-
-    if (mapa_oceano[posicao_peixe_y - 3][posicao_peixe_x] != '@' && mapa_oceano[posicao_peixe_y - 3][posicao_peixe_x] != 'A' && posicao_peixe_y - 3 > 0){
-
-       mapa_oceano[posicao_peixe_y - 3][posicao_peixe_x] = '3';
-    
-    }
-
-    if (mapa_oceano[posicao_peixe_y + 3][posicao_peixe_x] != '@' && mapa_oceano[posicao_peixe_y + 3][posicao_peixe_x] != 'A' && posicao_peixe_y + 3 < altura){
-
-       mapa_oceano[posicao_peixe_y + 3][posicao_peixe_x] = '3';
-    
-    }
-
-    if (mapa_oceano[posicao_peixe_y][posicao_peixe_x - 3] != '@' && mapa_oceano[posicao_peixe_y][posicao_peixe_x - 3] != 'A' && posicao_peixe_x - 3 > 0){
-
-       mapa_oceano[posicao_peixe_y][posicao_peixe_x - 3] = '3';
-    
-    }
-
-    if (mapa_oceano[posicao_peixe_y][posicao_peixe_x + 3] != '@' && mapa_oceano[posicao_peixe_y][posicao_peixe_x + 3] != 'A' && posicao_peixe_x + 3 < largura){
-
-       mapa_oceano[posicao_peixe_y][posicao_peixe_x + 3] = '3';
-    
-    }
-
-    if (mapa_oceano[posicao_peixe_y - 2][posicao_peixe_x - 1] != '@' && mapa_oceano[posicao_peixe_y - 2][posicao_peixe_x - 1] != 'A' && posicao_peixe_x - 1 > 0 && posicao_peixe_y - 2 > 0){
-
-       mapa_oceano[posicao_peixe_y - 2][posicao_peixe_x - 1] = '3';
-    
-    }
-
-    if (mapa_oceano[posicao_peixe_y + 2][posicao_peixe_x + 1] != '@' && mapa_oceano[posicao_peixe_y + 2][posicao_peixe_x + 1] != 'A' && posicao_peixe_x + 1 < largura && posicao_peixe_y + 2 < altura){
-
-       mapa_oceano[posicao_peixe_y + 2][posicao_peixe_x + 1] = '3';
-    
-    }
-
-    if (mapa_oceano[posicao_peixe_y + 2][posicao_peixe_x - 1] != '@' && mapa_oceano[posicao_peixe_y + 2][posicao_peixe_x - 1] != 'A' && posicao_peixe_y + 2 < altura && posicao_peixe_x - 1 > 0){
-
-       mapa_oceano[posicao_peixe_y + 2][posicao_peixe_x - 1] = '3';
-    
-    }
-
-    if (mapa_oceano[posicao_peixe_y - 2][posicao_peixe_x + 1] != '@' && mapa_oceano[posicao_peixe_y - 2][posicao_peixe_x + 1] != 'A' && posicao_peixe_y - 2 > 0 && posicao_peixe_x + 1 < largura){
-
-       mapa_oceano[posicao_peixe_y - 2][posicao_peixe_x + 1] = '3';
-    
-    }
-
-    if (mapa_oceano[posicao_peixe_y - 1][posicao_peixe_x - 2] != '@' && mapa_oceano[posicao_peixe_y - 1][posicao_peixe_x - 2] != 'A' && posicao_peixe_x - 2 > 0 && posicao_peixe_y - 1 > 0){
-
-       mapa_oceano[posicao_peixe_y - 1][posicao_peixe_x - 2] = '3';
-    
-    }
-
-    if (mapa_oceano[posicao_peixe_y + 1][posicao_peixe_x + 2] != '@' && mapa_oceano[posicao_peixe_y + 1][posicao_peixe_x + 2] != 'A' && posicao_peixe_x + 2 < largura && posicao_peixe_y + 1 < altura){
-
-       mapa_oceano[posicao_peixe_y + 1][posicao_peixe_x + 2] = '3';
-    
-    }
-
-    if (mapa_oceano[posicao_peixe_y + 1][posicao_peixe_x - 2] != '@' && mapa_oceano[posicao_peixe_y + 1][posicao_peixe_x - 2] != 'A' && posicao_peixe_y + 1 < altura && posicao_peixe_x - 2 > 0){
-
-       mapa_oceano[posicao_peixe_y + 1][posicao_peixe_x - 2] = '3';
-    
-    }
-
-    if (mapa_oceano[posicao_peixe_y - 1][posicao_peixe_x + 2] != '@' && mapa_oceano[posicao_peixe_y - 1][posicao_peixe_x + 2] != 'A' && posicao_peixe_y - 1 > 0 && posicao_peixe_x + 2 < largura){
-
-       mapa_oceano[posicao_peixe_y - 1][posicao_peixe_x + 2] = '3';
-    
-    }
-
 }
 
 void cria_mapa(char mapa_oceano[altura][largura]){
@@ -264,7 +256,9 @@ char gerador_de_cordenada(char chave_de_movimento_peixe){
 //imprime o mapa completo
 void imprime_mapa(char mapa_oceano[altura][largura]){
     
-    cria_campo_eletrico_peixe(mapa_oceano);
+    //cria_campo_eletrico_peixe_losangulo(mapa_oceano, contador);
+    cria_campo_eletrico_peixe_quadrado(mapa_oceano, contador);
+
 
     for (y = 0; y < altura; ++y){
 
@@ -282,6 +276,9 @@ void imprime_mapa(char mapa_oceano[altura][largura]){
 
 //imprime só o campo de visão do tubarão
 void imprime_mapa_2(char mapa_oceano[altura][largura]){
+
+    cria_campo_eletrico_peixe_losangulo(mapa_oceano, contador);
+    cria_campo_eletrico_peixe_quadrado(mapa_oceano, contador);
 
     int x_1, y_1, y_2, x_2;
 
