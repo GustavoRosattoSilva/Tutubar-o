@@ -17,45 +17,7 @@ const int altura = 23, largura = 80, contador = 4;
 int posicao_tubarao_x = 1, posicao_tubarao_y = 1, posicao_peixe_x, posicao_peixe_y, x, y, i, j, k;
 
 //declaração de funções / funtion declaration
-//preciso dar um jeito de automatizar isso inviavel fazer todo o campo na mão
-//preciso impedir de chocar contra a parede
-void cria_campo_eletrico_peixe(char mapa_oceano[altura][largura], int contador){
 
-    //limpa o mapa dos campos anteriores
-    /*for (y = 0; y < altura; ++y){
-
-       for (x = 0; x < largura; ++x){
-
-           if (mapa_oceano[y][x] != '@' && mapa_oceano[y][x] != 'A' && mapa_oceano[y][x] != 'P' && mapa_oceano[y][x] != 'H'){
-               
-               mapa_oceano[y][x] = ' ';
-
-           }
-
-       }
-
-    }*/
-
-    for (i = 1; i <= contador; ++i){
-        
-        for (j = posicao_peixe_y; j < posicao_peixe_y + i; ++j){
-            
-            for (k = posicao_peixe_x + i; k > posicao_peixe_x; --k){
-                
-                if (mapa_oceano[j][k] != '@' && mapa_oceano[j][k] != 'A' && j < altura ){
-                    
-                    mapa_oceano[j][k] = '4';
-
-                }
-
-            }
-
-        }
-
-    }
-    
-
-}
 //fuções para converter inteiro em real e real em inteiro
 char str_1(int numero){
 
@@ -207,24 +169,6 @@ void cria_campo_eletrico_peixe(char mapa_oceano[altura][largura], int contador){
        }
 
     }
-
-    /*for (i = contador; i > 1; ++i){
-        
-        for (j = posicao_peixe_y; j < posicao_peixe_y + i - 1; ++j){
-            
-            for (k = posicao_peixe_x + i - 1; k > posicao_peixe_x; --k){
-                
-                if (mapa_oceano[j][k] != '@' && mapa_oceano[j][k] != 'A' && j < altura ){
-                    
-                    mapa_oceano[j][k] = str_1(i);
-
-                }
-
-            }
-
-        }
-
-    }*/
 
     for (i = 0; i <= contador; ++i){
         
