@@ -14,16 +14,146 @@
 // setando as variaveis / set the initial variables
 const int altura = 23, largura = 80, contador = 4;
 
-int posicao_tubarao_x = 1, posicao_tubarao_y = 1, posicao_peixe_x, posicao_peixe_y, x, y, i, j, k;
+int posicao_tubarao_x = 1, posicao_tubarao_y = 1, posicao_peixe_x, posicao_peixe_y, x, y, i, j, k, l;
 
 //declaração de funções / funtion declaration
-//preciso dar um jeito de automatizar isso inviavel fazer todo o campo na mão
-//preciso impedir de chocar contra a parede
-//como fazer o campo?
+//fuções para converter inteiro em real e real em inteiro
+char str_1(int numero){
+
+    if (numero == 1){
+        
+        return '1';
+    
+    }
+
+    if (numero == 2){
+        
+        return '2';
+    
+    }
+
+    if (numero == 3){
+        
+        return '3';
+    
+    }
+
+    if (numero == 4){
+        
+        return '4';
+    
+    }
+
+    if (numero == 5){
+        
+        return '5';
+    
+    }
+
+    if (numero == 6){
+        
+        return '6';
+    
+    }
+
+    if (numero == 7){
+        
+        return '7';
+    
+    }
+
+    if (numero == 8){
+        
+        return '8';
+    
+    }
+
+    if (numero == 9){
+        
+        return '9';
+    
+    }
+
+    if (numero == 10){
+        
+        return '0';
+    
+    }
+
+    return ' ';
+
+}
+
+int int_1(char carctere){
+
+    if (carctere == '1'){
+        
+        return 1;
+    
+    }
+
+    if (carctere == '2'){
+        
+        return 2;
+    
+    }
+
+    if (carctere == '3'){
+        
+        return 3;
+    
+    }
+
+    if (carctere == '4'){
+        
+        return 4;
+    
+    }
+
+    if (carctere == '5'){
+        
+        return '5';
+    
+    }
+
+    if (carctere == '6'){
+        
+        return 6;
+    
+    }
+
+    if (carctere == '7'){
+        
+        return 7;
+    
+    }
+
+    if (carctere == '8'){
+        
+        return 8;
+    
+    }
+
+    if (carctere == '9'){
+        
+        return 9;
+    
+    }
+
+    if (carctere == '0'){
+        
+        return 10;
+    
+    }
+
+    return 0;
+
+}
+
 void cria_campo_eletrico_peixe(char mapa_oceano[altura][largura], int contador){
 
     //limpa o mapa dos campos anteriores
-    /*for (y = 0; y < altura; ++y){
+    for (y = 0; y < altura; ++y){
 
        for (x = 0; x < largura; ++x){
 
@@ -35,27 +165,41 @@ void cria_campo_eletrico_peixe(char mapa_oceano[altura][largura], int contador){
 
        }
 
-    }*/
+    }
 
     for (i = 1; i <= contador; ++i){
         
-        for (j = posicao_peixe_y; j < posicao_peixe_y + i; ++j){
+        for (l = 0; l <= i; ++l){
             
-            for (k = posicao_peixe_x + i; k > posicao_peixe_x; --k){
+            if (posicao_peixe_y + l > 0 && posicao_peixe_y + l < altura && posicao_peixe_x + i - l > 0 && posicao_peixe_x + i - l < largura && mapa_oceano[posicao_peixe_y + l][posicao_peixe_x + i - l] == ' '){
                 
-                if (mapa_oceano[j][k] != '@' && mapa_oceano[j][k] != 'A' && j < altura ){
-                    
-                    mapa_oceano[j][k] = '4';
+                mapa_oceano[posicao_peixe_y + l][posicao_peixe_x + i - l] = str_1(i);
 
-                }
+            }
 
+            if (posicao_peixe_y - l > 0 && posicao_peixe_y - l < altura && posicao_peixe_x - i + l > 0 && posicao_peixe_x - i + l < largura && mapa_oceano[posicao_peixe_y - l][posicao_peixe_x - i + l] == ' '){
+                
+                mapa_oceano[posicao_peixe_y - l][posicao_peixe_x - i + l] = str_1(i);
+                
+            }
+
+            if (posicao_peixe_y + l > 0 && posicao_peixe_y + l < altura && posicao_peixe_x - i + l > 0 && posicao_peixe_x - i + l < largura && mapa_oceano[posicao_peixe_y + l][posicao_peixe_x - i + l] == ' '){
+                
+                mapa_oceano[posicao_peixe_y + l][posicao_peixe_x - i + l] = str_1(i);
+
+            }
+
+            if (posicao_peixe_y - l > 0 && posicao_peixe_y - l < altura && posicao_peixe_x + i - l > 0 && posicao_peixe_x + i - l < largura && mapa_oceano[posicao_peixe_y - l][posicao_peixe_x + i - l] == ' '){
+
+                
+                mapa_oceano[posicao_peixe_y - l][posicao_peixe_x + i - l] = str_1(i);
+                
             }
 
         }
 
     }
     
-
 }
 
 void cria_mapa(char mapa_oceano[altura][largura]){
@@ -135,6 +279,7 @@ int main(){
 
     //imprimindo o mapa / print the map
     imprime_mapa(mapa_oceano);
+    //cria_campo_eletrico_peixe(mapa_oceano,contador);
 
     //movimentando meu tubarão
 
