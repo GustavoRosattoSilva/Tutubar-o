@@ -1,8 +1,8 @@
 /***************************************************************************
- *     @file: tutubarão.c                                                  *
+ *     @file: tutubarão_primeiro_teste.c                                   *
  *   @author: Gustavo Rosatto Silva                                        *
- * @objective: teste preliminares para um projeto envolvendo               *
- * eletrorrecepsção de tubarões / preliminary tests for a project          *
+ * @objective: criar uma simulação simples para um projeto envolvendo      *
+ * eletrorrecepsção de tubarões / create a simulation for a project        *
  * involving shark electroreception                                        *
  ***************************************************************************/
 
