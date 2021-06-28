@@ -1,9 +1,7 @@
 /***************************************************************************
- *     @file: tutubarão.c                                                  *
+ *     @file: tutubarão_segundo_teste.c                                    *
  *   @author: Gustavo Rosatto Silva                                        *
- * @objective: teste preliminares para um projeto envolvendo               *
- * eletrorrecepsção de tubarões / preliminary tests for a project          *
- * involving shark electroreception                                        *
+ * @objective: automatizar o movimento do tubarão/ automate shark movement *
  ***************************************************************************/
 
 #include <stdio.h>
