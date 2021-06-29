@@ -578,22 +578,103 @@ char tubarao_cacador(char mapa_oceano[altura][largura], char auxiliar){
 
 }
 
+void media_execucao(char mapa_oceano[altura][largura]){
+
+    float tempos_de_busca[3];
+    
+    int bad, tempo_de_busca;
+
+    char auxiliar;
+
+    tempos_de_busca[0] = 0;
+
+    tempos_de_busca[1] = 0;
+
+    tempos_de_busca[2] = 0;
+
+    for (bad = 0; bad < 10; ++bad){
+        
+        cria_mapa(mapa_oceano);
+
+        tempo_de_busca = 0;
+
+        while(1 == 1){
+
+            auxiliar = tubarao_cacador(mapa_oceano, auxiliar);
+
+            redefine_mapa_tubarao(mapa_oceano, auxiliar);
+
+            auxiliar = redefine_mapa_peixe(mapa_oceano);
+
+            tempo_de_busca ++;
+
+            delay(42);
+            
+        
+            if (auxiliar == 'k'){
+        
+                break;
+
+            }
+        
+        }
+
+        tempos_de_busca[0] = tempos_de_busca[0] + tempo_de_busca; 
+
+    }
+
+    for (bad = 0; bad < 10; ++bad){
+        
+        cria_mapa(mapa_oceano);
+
+        tempo_de_busca = 0;
+
+        while(1 == 1){
+
+            redefine_mapa_tubarao(mapa_oceano, auxiliar);
+
+            auxiliar = redefine_mapa_peixe(mapa_oceano);
+
+            tempo_de_busca ++;
+
+            delay(42);
+            
+        
+            if (auxiliar == 'k'){
+        
+                break;
+        
+        }
+
+        tempos_de_busca[1] = tempos_de_busca[1] + tempo_de_busca; 
+
+    }
+
+    printf("Tempo médio de busca sem se mover: %f\nTempo médio de busca IA tubarão: %f\nTempo médio de busca tubrão se movimentando aleatório: %f\n", tempos_de_busca[1]/10,tempos_de_busca[0]/10,tempos_de_busca[2]/10);
+
+
+    }
+
+}
+
 int main(){
+
+    //int tempo_de_busca = 0;
 
     // setando as variaveis / set the initial variables
     char mapa_oceano[altura][largura], auxiliar;
 
     // preencheendo o mapa / contruct the map
-    cria_mapa(mapa_oceano);
+    /*cria_mapa(mapa_oceano);
 
     //imprimindo o mapa / print the map
     imprime_mapa(mapa_oceano);
 
     //movimentando meu tubarão
     
-    while(1==1){
+    while(1 == 1){
 
-        /*scanf("%c", &auxiliar);
+        scanf("%c", &auxiliar);
         
         if (auxiliar == 'k'){
         
@@ -601,19 +682,25 @@ int main(){
         
         }
 
-        else{*/
+        else{
 
             auxiliar = tubarao_cacador(mapa_oceano, auxiliar);
 
             redefine_mapa_tubarao(mapa_oceano, auxiliar);
 
             auxiliar = redefine_mapa_peixe(mapa_oceano);
+
+            tempo_de_busca ++;
+
+            delay(42);
             
             
 
         //}
         
         if (auxiliar == 'k'){
+
+            printf("%d\n", tempo_de_busca);
         
             printf("win\n");
         
@@ -621,7 +708,9 @@ int main(){
         
         }
 
-    }
+    }*/
+
+    media_execucao(mapa_oceano);
 
     return 0;
 
