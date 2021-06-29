@@ -577,14 +577,13 @@ char tubarao_cacador(char mapa_oceano[altura][largura], char auxiliar){
 
 
 }
-
 void media_execucao(char mapa_oceano[altura][largura]){
 
     float tempos_de_busca[3];
     
     int bad, tempo_de_busca;
 
-    char auxiliar;
+    char auxiliar, chave_de_movimento_tubarao;
 
     tempos_de_busca[0] = 0;
 
@@ -608,7 +607,7 @@ void media_execucao(char mapa_oceano[altura][largura]){
 
             tempo_de_busca ++;
 
-            delay(42);
+            //delay(42);
             
         
             if (auxiliar == 'k'){
@@ -637,7 +636,7 @@ void media_execucao(char mapa_oceano[altura][largura]){
 
             tempo_de_busca ++;
 
-            delay(42);
+            //delay(42);
             
         
             if (auxiliar == 'k'){
@@ -647,6 +646,35 @@ void media_execucao(char mapa_oceano[altura][largura]){
         }
 
         tempos_de_busca[1] = tempos_de_busca[1] + tempo_de_busca; 
+
+    }
+
+    for (bad = 0; bad < 10; ++bad){
+        
+        cria_mapa(mapa_oceano);
+
+        tempo_de_busca = 0;
+
+        while(1 == 1){
+
+            auxiliar = gerador_de_cordenada(chave_de_movimento_tubarao);
+
+            redefine_mapa_tubarao(mapa_oceano, auxiliar);
+
+            auxiliar = redefine_mapa_peixe(mapa_oceano);
+
+            tempo_de_busca ++;
+
+            //delay(42);
+            
+        
+            if (auxiliar == 'k'){
+        
+                break;
+        
+        }
+
+        tempos_de_busca[2] = tempos_de_busca[2] + tempo_de_busca; 
 
     }
 
