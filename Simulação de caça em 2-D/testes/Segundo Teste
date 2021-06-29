@@ -671,6 +671,8 @@ void media_execucao(char mapa_oceano[altura][largura]){
             if (auxiliar == 'k'){
         
                 break;
+            
+            }
         
         }
 
